@@ -1,0 +1,27 @@
+<% if (selectedCategory !== '') { %>
+  <div><a href="#" data-id=''>&lt;&lt; All Categories</a></div>
+<%
+  }
+  var loopover = selectedCategory,
+      category = categories[selectedCategory];
+  if (category.parent !== undefined && category.parent !== '') {
+%>
+  <div><a href="#" data-id="<%=category.parent%>">&lt;&lt;<%=categories[category.parent].name%> (<%=categories[category.parent].count%>)</a></div>
+<%
+  }
+  if (category.children.length < 1) {
+    loopover = categories[selectedCategory].parent;
+  }
+%>
+<ul>
+<%
+  for (var index in categories[loopover].children) {
+    // Nested architectures require funny access protocols
+    var id = categories[loopover].children[index],
+        category = categories[id];
+%>
+  <li><%=(id==selectedCategory)?'<em>':''%><a href="#" data-id="<%=id%>"><%=category.name%> (<%=category.count%>)</a><%=(id==selectedCategory)?'</em>':''%></li>
+<%
+  }
+%>
+</ul>

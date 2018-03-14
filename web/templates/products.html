@@ -1,0 +1,59 @@
+<% if (products.length > 0) { %>
+  <div class="row">
+    <div class="col-xs-6 form-inline">
+      <label>Page: </label>
+      <select name="offset" class="form-control"<%=count<10?' disabled':''%>>
+        <% for (var index = 1; index*10 < count+10; index++) { %>
+          <option<%=(index==offset)?' selected':''%>><%=index%></option>
+        <% } %>
+      </select>
+    </div>
+    <div class="col-xs-6">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%
+        for (var index in products) {
+          var product = products[index];
+      %>
+      <div class="row product" data-id="<%=product.id%>">
+          <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-12 title"><%=product.name%></div>
+            </div>
+            <div class="row">
+              <% for (var attribute in product.attributes) { %>
+                <div class="col-xs-4">
+                  <label><%=attribute%></label>
+                  <span><%=product.attributes[attribute]%></span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="row">
+              <div class="col-xs-6 inventory"><%=product.inventory%></div>
+              <div class="col-xs-6">
+                  <select class="form-control inventory-dropdown">
+                    <% for (var index = 0; index <= product.inventory; index++) { %>
+                      <option><%=index%></option>
+                    <% } %>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <button class="btn btn-primary form-control">Add To Order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+<% } else { %>
+  <div class="row">
+    <div class="col-xs-12"><em>No records were found matching these parameters.</em></div>
+  </div>
+<% } %>

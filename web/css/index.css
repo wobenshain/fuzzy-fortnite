@@ -1,0 +1,109 @@
+body {
+  font-size: 14px;
+}
+
+#widget-header {
+  background: #203;
+  border-bottom: 5px solid #fd2;
+  color: #FFF;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+#widget-header .col-xs-12 {
+  padding: 5px 1em;
+}
+
+#widget-account {
+  color: #000;
+  font-size: 14px;
+  position: relative;
+  text-align: right;
+}
+
+#widget-account .notification {
+  cursor: pointer;
+}
+
+#widget-account .glyphicon {
+  position: relative;
+  font-size: 28px;
+  border-radius: 50px;
+  background: #FFF;
+  padding: 7px;
+}
+
+#widget-account .num:not(.show) {
+  display: none;
+}
+
+#widget-account .num {
+  background: #C00;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  height: 2em;
+  padding-top: 2px;
+  position: absolute;
+  left: -1em;
+  text-align: center;
+  top: 0px;
+  width: 2em;
+}
+
+#widget-account-panel:not(.show) {
+  display: none;
+}
+
+#widget-account-panel {
+  background: #203;
+  border: 3px solid #fd2;
+  border-top: 0px;
+  color: #fff;
+  font-weight: normal;
+  padding: 1em 1em;
+  position: absolute;
+  right: 0px;
+  text-align: left;
+  top: 51px;
+  width: 30em;
+  z-index: 1;
+}
+
+#widget-nav {
+  padding-top: 1em;
+  border-right: 1px solid #CCC;
+}
+
+#widget-nav ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#widget-categories {
+  font-size: 1.2em;
+}
+
+#widget-product {
+  padding-top: 1em;
+}
+
+.product {
+  background: #FFF;
+  border: 1px solid #000;
+  border-radius: 5px;
+  color: #000;
+  margin: 1em 0px 0px;
+  padding: 10px 0px;
+}
+
+.product .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#widget-product .inventory {
+  font-size: 20px;
+  text-align: center;
+  padding: 5px 0px;
+}

@@ -1,0 +1,62 @@
+<a class="notification"><span class="glyphicon glyphicon-shopping-cart"><span class="num<%=orderNumber?' show':''%>"><%=orderInventory.length%></span></span></a>
+<div id="widget-account-panel"<%=showPanel?'class="show"':''%>>
+  <div class="row">
+    <div class="col-xs-9 form-inline">
+      <label for="widget-order-number">Order #:</label>
+      <input type="text" name="widget-order-number" class="form-control" value="<%=orderNumber||''%>"/>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn-primary form-control fetch"<%=orderNumber?' disabled':''%>>Fetch</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%
+        for (var index in orderInventory) {
+          var product = orderInventory[index];
+      %>
+        <div class="row product" data-id="<%=product.id%>">
+          <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-12 title"><%=product.name%></div>
+            </div>
+            <div class="row">
+              <% for (var attribute in product.attributes) { %>
+                <div class="col-xs-6">
+                  <label><%=attribute%></label>
+                  <span><%=product.attributes[attribute]%></span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="row">
+              <div class="col-xs-12">
+                <select class="form-control inventory-dropdown">
+                  <% for (var index = 0; index <= product.inventory; index++) { %>
+                    <option<%=index==product.order?' selected':''%>><%=index%></option>
+                  <% } %>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="#" class="delete">delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  <% if (orderNumber) { %>
+    <div class="row">
+      <div class="col-xs-6">
+        <button class="btn-primary form-control update">Update</button>
+      </div>
+      <div class="col-xs-6">
+        <button class="btn-primary form-control delete">Delete Order</button>
+      </div>
+    </div>
+  <% } %>
+</div>

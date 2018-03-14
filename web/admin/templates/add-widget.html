@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-xs-3">
+    <label for="widget-category">Category:</label>
+  </div>
+  <div class="col-xs-9">
+    <select name="widget-category" class="form-control"<%=inventory == null?'':' disabled'%>>
+      <option value="">--- Select Category --- </option>
+      <%
+        var drilldown = function(index,spacer='') {
+          var self = categories[index];
+      %>
+            <option value="<%=index%>"<%=parameters['widget-category']==index?' selected':''%>><%=spacer%><%=self.name%></option>
+      <%
+          for (var index in self.children) drilldown(self.children[index],spacer+"&emsp;");
+        }
+        for (var index in categories[''].children) drilldown(categories[''].children[index]);
+      %>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <%
+    for (var index in facets) {
+      var facet = facets[index];
+  %>
+    <div class="col-xs-1">
+      <label for="widget-facet-<%=index%>"><%=index%></label>
+    </div>
+    <div class="col-xs-3">
+      <select name="widget-facet-<%=index%>" class="form-control" data-id="<%=facet.id%>"<%=inventory == null?'':' disabled'%>>
+        <option value="">--- Select <%=index%> ---</option>
+        <%
+          for (var valIndex in facet.values) {
+            var value = facet.values[valIndex];
+        %>
+          <option value="<%=value.id%>"<%=parameters['widget-facet-'+index]==value.id?' selected':''%>><%=value.value%></option>
+        <% } %>
+      </Select>
+    </div>
+  <% } %>
+</div>
+<div class="row">
+  <div class="col-xs-4"/>
+  <div class="col-xs-4">
+    <button class="fetch form-control btn btn-primary"<%=parameters['widget-category']&&(inventory == null)?'':' disabled'%>>Fetch</button>
+  </div>
+  <div class="col-xs-4"/>
+</div>
+<% if (inventory != null) { %>
+<div class="row">
+  <div class="col-xs-2"/>
+  <div class="col-xs-2">
+      <button class="cancel form-control btn-primary">Cancel</button>
+    </div>
+  <div class="col-xs-3">
+    <input type="number" name="inventory" class="form-control" value="<%=inventory%>" min="0"/>
+  </div>
+  <div class="col-xs-2">
+    <button class="update form-control btn-primary"><%=id==null?'Create':'Update'%></button>
+  </div>
+  <div class="col-xs-2"/>
+<% } %>

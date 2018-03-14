@@ -1,0 +1,27 @@
+body {
+  font-size: 14px;
+}
+
+#widget-header {
+  background: #203;
+  border-bottom: 5px solid #fd2;
+  color: #FFF;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+#widget-header .col-xs-12 {
+  padding: 5px 1em;
+}
+
+#widget-nav {
+  padding-top: 1em;
+}
+
+#widget-admin {
+  border-left: 1px solid #CCC;
+}
+
+#widget-admin .row {
+  margin-top: 1em;
+}

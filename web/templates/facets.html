@@ -1,0 +1,23 @@
+<ul>
+  <%
+    for (var facet in facets) {
+      var values = facets[facet].values;
+  %>
+    <li>
+      <span><label><a href="#"><%=facet%></a></label> &gt;&gt;</span>
+      <ul class="collapse" data-id="<%=facets[facet].id%>">
+        <%
+          for (var index in values) {
+            var value = values[index];
+        %>
+          <li>
+            <label>
+              <input type="checkbox" data-id="<%=value.id%>"/>
+              <span><%=value.value%></span>
+          </label>
+          </li>
+        <% } %>
+      </ul>
+    </li>
+  <% } %>
+</ul>
