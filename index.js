@@ -431,7 +431,7 @@ app.get('/products',function(req, res, next) {
             paramsFac = paramsFac.concat(facet);
         }
         where += ` AND wdg.rowid IN (`+whereFac.substring(11)+`)`;
-        params = query.params.concat(paramsFac);
+        params = params.concat(paramsFac);
     }
     subquery += (where.length > 0 ? `WHERE `+where.substring(5) : ``)
     runSerialQuery(res,next,[{
