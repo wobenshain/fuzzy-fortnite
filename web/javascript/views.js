@@ -55,6 +55,7 @@ app.AccountView = Backbone.View.extend({
             orderInventory = this.model.get('orderInventory'),
             entry = orderInventory.filter((widget) => { return widget.id == id; })[0];
         this.model.set('inventoryChange',[{id:id,value:0-entry.order}]);
+        return false;
     },
     deleteOrder: function(e) {        
         this.model.destroy().done((resp) => {
@@ -87,6 +88,7 @@ app.AccountView = Backbone.View.extend({
     },
     showPanel: function(e) {
         this.$el.find('#widget-account-panel').toggleClass('show');
+        return false;
     },
     render: function() {
         this.$el.html(this.template(this.model.attributes));
@@ -198,6 +200,7 @@ app.FacetsView = Backbone.View.extend({
     },
     drilldown: function(e) {
         $(e.target).closest('li').children('.collapse').toggleClass('show');
+        return false;
     },
     selectFacet: function(e) {
         var target = $(e.target),
