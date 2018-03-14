@@ -94,7 +94,7 @@ app.get('/facets', function(req, res, next) {
     }]);
 });
 
-function getOrder(orderNumber, res, next) {
+function getOrder(orderNumber, res, next, isCallback=false) {
     runSerialQuery(res,next,[{
         sql: `
             SELECT wdg.rowid,
@@ -114,7 +114,13 @@ function getOrder(orderNumber, res, next) {
         `,
         params: [orderNumber],
         callback: (rows) => {
-            if (rows.length < 1) return next("This order could not be found.");
+            if (rows.length < 1) {
+                if (isCallback) {
+                    return {orderNumber: null, orderInventory: [], inventoryChange: [], showPanel: true};
+                } else {
+                    return next("This order could not be found.");
+                }
+            }
             var lastrow = null,
                 products = [];;
             rows.forEach((row) => {
@@ -283,7 +289,7 @@ app.put('/orders/:id', function(req, res, next) {
                             return next(err);
                         }
                     });
-                    getOrder(id,res,next);
+                    getOrder(id,res,next,true);
                 }),
                 respond = (err) => { if (err) return next(err); finalResponse(); };
             // update inventory
