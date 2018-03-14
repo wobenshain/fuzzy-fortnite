@@ -4,7 +4,8 @@
  - clone git repository
  - navigate to repository
  - run command `npm install`
- - run command `nodemon index.js`
+ - run command `npm install -g forever`
+ - run command `forever index.js`
  - open browser to [localhost](http://localhost/)
 
 # Configuration
